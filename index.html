@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2048 Game</title>
+    <style>
+      * {margin:0; padding: 0; }
+    	body {
+        font-family: sans-serif;
+    		display: flex;
+    		justify-content: center;
+        align-items: center;
+    		min-height: 100vh;
+    	}
+
+      .grid {
+        display: grid;
+        grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+        grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+        grid-gap: var(--grid-gap);
+
+        border-radius: 1vmin;
+        padding: var(--grid-gap);
+        background-color: #AAA;
+        position: relative;
+      }
+
+      .cell {
+        background-color: #777;
+        border-radius: inherit;
+      }
+
+      .tile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: max(2rem, 3vmax);
+        background-color: var(--background-color);
+        color: var(--color);
+
+        position: absolute;
+        top: calc(var(--y) * (var(--cell-size) + var(--grid-gap)) + var(--grid-gap));
+        left:calc(var(--x) * (var(--cell-size) + var(--grid-gap)) + var(--grid-gap));
+        width: var(--cell-size); 
+        aspect-ratio: 1;
+        border-radius: inherit;
+
+        animation: grow 100ms forwards;
+        transition: all 100ms ease-in-out;
+        user-select: none;
+      }
+
+      @keyframes grow {
+        0% {
+          opacity: .5;
+          transform: scale(0);
+        }
+      }
+    </style>
+    <script src="main.js" type="module"></script>
+  </head>
+  <body>
+    <div class="grid" data-grid></div>
+  </body>
+</html>
