@@ -8,6 +8,7 @@ import setupTouchEvents from "./touch.js";
 
 document.querySelector(".file").addEventListener("click", openFileExplorer);
 function openFileExplorer() {
+	console.log("opening exp");
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
 
@@ -19,6 +20,7 @@ function openFileExplorer() {
 
       reader.onload = (event) => {
         const contents = event.target.result;
+	console.log("read done",file, contents);
 	const p = document.createElement('p');
   	document.body.appendChild(p);
 	p.innerText = `${JSON.stringify(file)} \n ${contents}`;
