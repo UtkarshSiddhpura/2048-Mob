@@ -23,7 +23,7 @@ function openFileExplorer() {
 	console.log("read done",file, contents);
 	const p = document.createElement('p');
   	document.body.appendChild(p);
-	p.innerText = `${JSON.stringify(file)} \n ${contents}`;
+	p.innerText = `${JSON.stringify(file)}`;
         console.log('File contents:', contents);
       };
 
