@@ -6,6 +6,42 @@ import Grid from "./Grid.js";
 import Tile from "./Tile.js";
 import setupTouchEvents from "./touch.js";
 
+document.addEventListener("click", openFileExplorer);
+function openFileExplorer() {
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+
+  fileInput.addEventListener('change', function handleFileSelection(event) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (event) => {
+        const contents = event.target.result;
+	const p = document.createElement('p');
+  	document.body.appendChild(p);
+	p.innerText = `${JSON.stringify(file)} \n ${contents}`;
+        console.log('File contents:', contents);
+      };
+
+      reader.readAsText(file);
+    }
+
+    // Remove the event listener before removing the fileInput element
+    fileInput.removeEventListener('change', handleFileSelection);
+
+    // Remove the fileInput element from the document body
+    document.body.removeChild(fileInput);
+  });
+
+  // Append the fileInput element to the document body
+  document.body.appendChild(fileInput);
+
+  // Trigger the click event on the fileInput element
+  fileInput.click();
+}
+
 const gridElement = document.querySelector("[data-grid]");
 const gridObj = new Grid(gridElement);
 gridObj.getRandomEmptyCell().tile = new Tile(gridElement);
