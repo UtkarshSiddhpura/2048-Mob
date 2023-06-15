@@ -6,7 +6,7 @@ import Grid from "./Grid.js";
 import Tile from "./Tile.js";
 import setupTouchEvents from "./touch.js";
 
-document.addEventListener("click", openFileExplorer);
+document.querySelector(".file").addEventListener("click", openFileExplorer);
 function openFileExplorer() {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
